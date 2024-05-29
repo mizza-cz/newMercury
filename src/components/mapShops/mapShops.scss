@@ -1,0 +1,67 @@
+.mapShops {
+  .header-section {
+    margin-bottom: 40px;
+  }
+}
+
+.map-tabs {
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  li {
+    margin: 0;
+    text-align: center;
+  }
+  a {
+    color: var(--color-dark);
+    padding: 8px 8px;
+    font-size: 20px;
+    border-radius: 15px;
+    font-family: "Gotham";
+    display: block;
+    text-decoration: none;
+    max-width: 200px;
+    width: 100%;
+    width: 200px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a.active {
+    color: #fff;
+    font-weight: 700;
+    background-color: var(--color-blue-light);
+  }
+}
+
+.mapShops__menu {
+  display: flex;
+  justify-content: space-between;
+}
+.mapShops__selects {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#shops-map-page .map-tabs {
+  width: fit-content;
+}
+
+.mapShops_inner {
+  display: flex;
+  margin-top: 40px;
+  @include media-breakpoint-down(lg) {
+    flex-direction: column;
+    margin-bottom: 100px;
+    margin-top: 0;
+  }
+}
+.mapShops_panel {
+  width: 300px;
+  max-width: 300px;
+  position: sticky;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
