@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>{{ title }} - {{ project }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
     <meta name="format-detection" content="telephone=no" />
 
     <!-- fonts  -->
@@ -33,7 +36,9 @@
   <body>
     <div class="base">
       {% include "@components/header/header.twig" %}
-      <main class="main" aria-label="Hlavní obsah">{% block main %}{% endblock %}</main>
+      <main class="main" aria-label="Hlavní obsah">
+        {% block main %}{% endblock %}
+      </main>
       {% include "@components/footer/footer.twig" %}
     </div>
     <script
@@ -58,18 +63,18 @@
     <!-- <script src="https://www.borymall.sk/themes/borymall/assets/js/main-script.js?v=12"></script> -->
     <script defer src="js/scripts.js"></script>
     <script>
-      mapShops = $('#shops').data('shops');
-      mapPlaces = $('#shops').data('places');
-      mapCategories = $('#shops').data('categories');
+      mapShops = $("#shops").data("shops");
+      mapPlaces = $("#shops").data("places");
+      mapCategories = $("#shops").data("categories");
       function isTouchDevice() {
         let isTouchable =
-          'ontouchstart' in window ||
+          "ontouchstart" in window ||
           navigator.maxTouchPoints > 0 ||
           navigator.msMaxTouchPoints > 0;
         if (isTouchable) {
-          $('body').addClass('touchable');
+          $("body").addClass("touchable");
         } else {
-          $('body').removeClass('touchable');
+          $("body").removeClass("touchable");
         }
         return isTouchable;
       }

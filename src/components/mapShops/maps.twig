@@ -44,7 +44,7 @@
                 >2.NP</a
               >
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <a
                 aria-selected="true"
                 class="nav-link"
@@ -55,7 +55,7 @@
                 role="tab"
                 >3.NP</a
               >
-            </li> -->
+            </li>
           </ul>
         </div>
         <div class="col-12 col-xl-6">
@@ -70,26 +70,49 @@
                 >
                   <option selected value="0">Vyberte kategorii</option>
 
-                  <option data-shops="101;119;123;224;225;226;228;229;230;s8;216;208" value="c4">
+                  <option
+                    data-shops="101;119;123;224;225;226;228;229;230;s8;216;208"
+                    value="c4"
+                  >
                     Restaurace, kavárny, občerstvení
                   </option>
 
-                  <option data-shops="106;s1;s2;124;s5" value="c1">Potraviny, delikatesy</option>
-                  <option data-shops="103" value="c2">Sport a sportovní potřeby</option>
-                  <option data-shops="102;105;114" value="c3">Elektro, knihy</option>
+                  <option data-shops="106;s1;s2;124;s5" value="c1">
+                    Potraviny, delikatesy
+                  </option>
+                  <option data-shops="103; 99" value="c2">
+                    Sport a sportovní potřeby
+                  </option>
+                  <option data-shops="102;105;114" value="c3">
+                    Elektro, knihy
+                  </option>
 
-                  <option data-shops="117;118;115;113;110;126;111;212;222;001;301" value="c5">
+                  <option
+                    data-shops="117;118;115;113;110;126;111;212;222;001;301"
+                    value="c5"
+                  >
                     Služby a různé
                   </option>
-                  <option data-shops="104;s6" value="c6">Klenoty, šperky</option>
+                  <option data-shops="104;s6" value="c6">
+                    Klenoty, šperky
+                  </option>
                   <option data-shops="121;125;s4;221" value="c7">Tabák</option>
-                  <option data-shops="108;109;116;s7;233;232;205" value="c8">Zdraví a krása</option>
-                  <option data-shops="120;204;217" value="c9">Volný čas, zábava, děti</option>
-                  <option data-shops="122;215;214;209;206;218;219;201" value="c10">
+                  <option data-shops="108;109;116;s7;233;232;205" value="c8">
+                    Zdraví a krása
+                  </option>
+                  <option data-shops="120;204;217" value="c9">
+                    Volný čas, zábava, děti
+                  </option>
+                  <option
+                    data-shops="122;215;214;209;206;218;219;201"
+                    value="c10"
+                  >
                     Oblečení a móda
                   </option>
 
-                  <option data-shops="107;211;220" value="c11">Domácnost, bytové dopňky</option>
+                  <option data-shops="107;211;220" value="c11">
+                    Domácnost, bytové dopňky
+                  </option>
                 </select>
               </div>
             </div>
@@ -116,7 +139,9 @@
                   <option value="119">Tchibo</option>
                   <option value="123">Minit</option>
                   <option value="117">PET Center</option>
-                  <option value="118">Dopravní podnik - předprodej jízdenek</option>
+                  <option value="118">
+                    Dopravní podnik - předprodej jízdenek
+                  </option>
                   <option value="115">O2</option>
                   <option value="113">ČSOB</option>
                   <option value="110">M-Klíče</option>
@@ -129,7 +154,9 @@
                   <option value="104">Bijou Brigitte</option>
                   <option value="114">Levné knihy</option>
                   <option value="121">Geco tabák</option>
-                  <option value="125">Don Pealo Tabák & Víno & Destiláty</option>
+                  <option value="125">
+                    Don Pealo Tabák & Víno & Destiláty
+                  </option>
                   <option value="s4">IQOS</option>
                   <option value="108">Grand Optical</option>
                   <option value="109">Dr.Max</option>
@@ -177,18 +204,19 @@
 
     <div class="mb-5" id="floor-map">
       <div class="container maps-conatiner">
-       <div class="mapShops_inner">
-        <div class="mapShops_panel">
-          <img src="images/ico/legenda.svg" alt="">
-        </div>
-        <div class="tab-content temporary-hidden" data-kiosk-id="1">
-          <style id="category-styles"></style>
+        <div class="mapShops_inner">
+          <div class="mapShops_panel">
+            <img src="images/ico/legenda.svg" alt="" />
+          </div>
+          <div class="tab-content temporary-hidden" data-kiosk-id="1">
+            <style id="category-styles"></style>
 
-          {% include "@components/mapShops/mapFlor-0.twig" %} {% include
-          "@components/mapShops/mapFlor-1.twig" %} {% include "@components/mapShops/mapFlor-2.twig"
-          %}
+            {% include "@components/mapShops/mapFlor-0.twig" %} {% include
+            "@components/mapShops/mapFlor-1.twig" %} {% include
+            "@components/mapShops/mapFlor-2.twig" %} {% include
+            "@components/mapShops/mapFlor-3.twig" %}
+          </div>
         </div>
-       </div>
       </div>
       <a class="shop-popover general-shop-popover" href="#"></a>
       <div class="info-icon-popover general-info-icon"></div>

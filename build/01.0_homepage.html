@@ -121,19 +121,19 @@
 	<!-- <script src="https://www.borymall.sk/themes/borymall/assets/js/main-script.js?v=12"></script> -->
 	<script defer src="js/scripts.js"></script>
 	<script>
-		mapShops = $('#shops').data('shops');
-		mapPlaces = $('#shops').data('places');
-		mapCategories = $('#shops').data('categories');
+		mapShops = $("#shops").data("shops");
+		mapPlaces = $("#shops").data("places");
+		mapCategories = $("#shops").data("categories");
 
 		function isTouchDevice() {
 			let isTouchable =
-				'ontouchstart' in window ||
+				"ontouchstart" in window ||
 				navigator.maxTouchPoints > 0 ||
 				navigator.msMaxTouchPoints > 0;
 			if (isTouchable) {
-				$('body').addClass('touchable');
+				$("body").addClass("touchable");
 			} else {
-				$('body').removeClass('touchable');
+				$("body").removeClass("touchable");
 			}
 			return isTouchable;
 		}
