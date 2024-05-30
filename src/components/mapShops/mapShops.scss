@@ -1,9 +1,7 @@
 .mapShops {
   margin: 0;
-  padding-top: 170px;
-  @include media-breakpoint-down(lg) {
-    padding-top: 120px;
-  }
+  padding-top: 64px;
+
   h1 {
     letter-spacing: 0;
     @include media-breakpoint-down(xxl) {
@@ -130,6 +128,3 @@
     height: 100% !important;
   }
 }
-
-
- 
