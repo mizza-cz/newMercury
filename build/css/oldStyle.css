@@ -16585,8 +16585,6 @@ button.scroll-top .icon:after {
     height: 665px;
 }
 
-
-
 #floor-map .shop-popover,
 #floor-map .info-icon-popover {
     position: absolute;
@@ -16602,6 +16600,7 @@ button.scroll-top .icon:after {
     filter: drop-shadow(0 3px 16px rgba(0, 0, 0, 0.16));
     transform-style: preserve-3d;
     min-width: 200px;
+    z-index: 999;
 }
 #floor-map .shop-popover.show,
 #floor-map .info-icon-popover.show {

@@ -767,73 +767,25 @@ if ($(".shops-map").length) {
       },
       {
         id: 9,
-        name_cs: "Dětská zóna",
+        name_cs: "Dětské hřiště",
         name_en: "Kid’s Zone",
       },
 
       {
         id: 11,
-        name_cs: "Informační mapa",
-        name_en: "Infomap",
+        name_cs: "Foto automat",
+        name_en: "Photo",
       },
+
       {
         id: 12,
-        name_cs: "Management",
-        name_en: "Head Office",
-      },
-      {
-        id: 13,
-        name_cs: "Automyčka",
-        name_en: "Carwash",
-      },
-      {
-        id: 14,
-        name_cs: "Místo pro přebalování",
-        name_en: "Baby changing room",
-      },
-      {
-        id: 15,
-        name_cs: "Venkovní terasa Tornádo",
-        name_en: "Exterior Terrace Tornado",
-      },
-      {
-        id: 16,
-        name_cs: "Parkování",
+        name_cs: "Parkovací automat",
         name_en: "Parking",
       },
+
       {
-        id: 17,
-        name_cs: "Stojany na kola",
-        name_en: "Bicycle parking",
-      },
-      {
-        id: 18,
-        name_cs: "Boxy na zásilky",
-        name_en: "Parcel Drop Boxes",
-      },
-      {
-        id: 19,
-        name_cs: "Uzamykatelné skříňky",
-        name_en: "Lockers",
-      },
-      {
-        id: 20,
-        name_cs: "Fitness Golem Club",
-        name_en: "Fitness Golem Club",
-      },
-      {
-        id: 21,
-        name_cs: "Vzorový byt Bory Bývanie",
-        name_en: "Bory Home showroom",
-      },
-      {
-        id: 22,
-        name_cs: "K dispozici invalidní vozíky",
-        name_en: "Wheelchairs available",
-      },
-      {
-        id: 23,
-        name_cs: "Dobíjecí stanice pro elektromobily",
+        id: 13,
+        name_cs: "Nabíječka elektromobilů",
         name_en: "Electric cars charging area",
       },
       {
