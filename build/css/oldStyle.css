@@ -15939,6 +15939,7 @@ button.scroll-top .icon:after {
     min-width: 200px;
     z-index: 999;
 }
+
 #floor-map .shop-popover.show,
 #floor-map .info-icon-popover.show {
     display: flex;

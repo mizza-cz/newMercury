@@ -128,3 +128,14 @@
     height: 100% !important;
   }
 }
+
+#floor-map .shop-popover::before,
+#floor-map .info-icon-popover::before {
+  position: absolute;
+  content: "Přejít na detail";
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 500;
+}
