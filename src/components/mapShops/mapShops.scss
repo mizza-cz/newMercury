@@ -1,17 +1,49 @@
 .mapShops {
-  .header-section {
-    margin-bottom: 40px;
+  margin: 0;
+  padding-top: 170px;
+  @include media-breakpoint-down(lg) {
+    padding-top: 120px;
+  }
+  h1 {
+    letter-spacing: 0;
+    @include media-breakpoint-down(xxl) {
+      text-align: center;
+    }
+    @include media-breakpoint-down(lg) {
+      margin-bottom: 0 !important;
+    }
+  }
+  .tab-content {
+    width: 100%;
+    svg {
+      height: auto !important;
+    }
   }
 }
 
 .map-tabs {
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
+  margin-left: -8px;
+  margin-right: -8px;
+  gap: 16px 0;
+  @include media-breakpoint-down(xxl) {
+    margin: 0 auto;
+    justify-content: center;
+  }
+
   li {
     margin: 0;
     text-align: center;
+    padding: 0 8px;
+
+    @include media-breakpoint-down(md) {
+      max-width: 50%;
+      flex: 0 0 50%;
+    }
   }
   a {
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.1);
+
     color: var(--color-dark);
     padding: 8px 8px;
     font-size: 20px;
@@ -26,6 +58,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 8px 8px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      max-width: 100%;
+    }
   }
   a.active {
     color: #fff;
@@ -43,25 +83,50 @@
   align-items: center;
   gap: 12px;
 }
-#shops-map-page .map-tabs {
-  width: fit-content;
-}
 
 .mapShops_inner {
   display: flex;
   margin-top: 40px;
-  @include media-breakpoint-down(lg) {
-    flex-direction: column;
+  gap: 80px;
+  @include media-breakpoint-down(xx) {
     margin-bottom: 100px;
     margin-top: 0;
+  }
+  @include media-breakpoint-down(xxl) {
+    flex-direction: column-reverse;
   }
 }
 .mapShops_panel {
   width: 300px;
   max-width: 300px;
   position: sticky;
+
   svg {
     width: 100%;
     height: 100%;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  #shops-map-page .map-tabs .nav-link {
+    font-size: 20px;
+    padding: 15px 8px;
+  }
+}
+@media screen and (min-width: 768px) {
+  #shops-map-page .map-tabs .nav-link {
+    border-radius: 15px;
+  }
+}
+#shops-map-page .map-tabs .nav-link.active {
+  color: #fff;
+  font-weight: 700;
+  background-color: var(--color-blue-light);
+}
+
+@media screen and (max-width: 1399.5px) {
+  #floor-map .maps-conatiner {
+    max-width: initial;
+    height: 100% !important;
   }
 }
