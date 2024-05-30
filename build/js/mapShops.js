@@ -732,8 +732,8 @@ if ($(".shops-map").length) {
       },
       {
         id: 2,
-        name_cs: "Taxi",
-        name_en: "Taxi",
+        name_cs: "Výtah",
+        name_en: "Lift",
       },
       {
         id: 3,
@@ -742,14 +742,10 @@ if ($(".shops-map").length) {
       },
       {
         id: 4,
-        name_cs: "Schody",
-        name_en: "Stairs",
+        name_cs: "Směnárna",
+        name_en: "Exchange",
       },
-      {
-        id: 5,
-        name_cs: "Výtah",
-        name_en: "Lift",
-      },
+
       {
         id: 6,
         name_cs: "Toalety",
