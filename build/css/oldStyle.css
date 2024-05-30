@@ -1030,10 +1030,7 @@ pre code {
         flex: 0 0 25%;
         max-width: 25%;
     }
-    .col-sm-4 {
-        flex: 0 0 33.3333333333%;
-        max-width: 33.3333333333%;
-    }
+
     .col-sm-5 {
         flex: 0 0 41.6666666667%;
         max-width: 41.6666666667%;
@@ -10326,15 +10323,6 @@ a.text-dark:focus {
 
 ul {
     list-style: none;
-}
-
-section {
-    margin: 50px 0;
-}
-@media screen and (min-width: 768px) {
-    section {
-        margin: 100px 0;
-    }
 }
 
 .container-one-side {

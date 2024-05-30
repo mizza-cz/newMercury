@@ -1,0 +1,24 @@
+/*! purgecss start ignore */
+
+.col .h2 {
+  margin-bottom: 24px;
+  @include media-breakpoint-only(xxl) {
+    margin-bottom: 80px;
+  }
+  @include media-breakpoint-only(xl) {
+    margin-bottom: 60px;
+  }
+  @include media-breakpoint-only(lg) {
+    margin-bottom: 40px;
+  }
+}
+main {
+  padding-top: 120px;
+  @include media-breakpoint-down(lg) {
+    padding-top: 72px;
+  }
+}
+.gy-10 {
+  --bs-gutter-y: 2.5rem;
+}
+/*! purgecss end ignore */
