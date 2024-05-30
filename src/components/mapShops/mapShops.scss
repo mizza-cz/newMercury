@@ -129,13 +129,18 @@
   }
 }
 
-#floor-map .shop-popover::before,
-#floor-map .info-icon-popover::before {
-  position: absolute;
-  content: "Přejít na detail";
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-weight: 500;
+.shop-popover.show {
+  .popupLink {
+    bottom: 4px;
+    text-align: center;
+    font-weight: 500;
+    display: block;
+    background: var(--color-blue-light);
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--color-light);
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
 }

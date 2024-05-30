@@ -319,7 +319,7 @@ if ($(".shops-map").length) {
           popoverHtml +=
             '<div class="popover-image-wrapper"><img class="popover-logo" src="' +
             mapShops[shopId].img_src +
-            '" alt="logo"/></div>';
+            '" alt="logo"/></div><span class="popupLink">Přejít na detail</span>';
         }
         if (isKiosk.length) {
           popoverHtml += '<div class="popover-close">x</div>';
