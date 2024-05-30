@@ -745,7 +745,11 @@ if ($(".shops-map").length) {
         name_cs: "Směnárna",
         name_en: "Exchange",
       },
-
+      {
+        id: 5,
+        name_cs: "Infopult",
+        name_en: "Infopoint",
+      },
       {
         id: 6,
         name_cs: "Toalety",
@@ -753,7 +757,7 @@ if ($(".shops-map").length) {
       },
       {
         id: 7,
-        name_cs: "Toalety pro invalidy",
+        name_cs: "Toalety pro vozíčkáře",
         name_en: "Accessible toilets",
       },
       {
@@ -766,11 +770,7 @@ if ($(".shops-map").length) {
         name_cs: "Dětská zóna",
         name_en: "Kid’s Zone",
       },
-      {
-        id: 10,
-        name_cs: "Informační stánek",
-        name_en: "Infopoint",
-      },
+
       {
         id: 11,
         name_cs: "Informační mapa",
