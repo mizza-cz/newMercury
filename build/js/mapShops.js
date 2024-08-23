@@ -346,23 +346,22 @@ if ($(".shops-map").length) {
         updatePopoverPosition();
       }, 50);
 
-      // If ?navigate=true is in url, click on navigate shop button
-      // var currentUrl = new URL(window.location.href);
-      // var params = new URLSearchParams(currentUrl.search);
-      // if (params.has('navigate')) {
-      //     var navigateAttribute = params.get('navigate');
-      //     if (navigateAttribute === 'true') {
-      //         params.delete('navigate');
-      //         currentUrl.search = params.toString();
-      //         window.history.pushState({}, '', currentUrl.href);
-      //         el.find('.button-kiosk').click();
-      //     }
-      // } else {
-      //     setTimeout(function () {
-      //         el.addClass("show");
-      //         updatePopoverPosition();
-      //     }, 50);
-      // }
+      var currentUrl = new URL(window.location.href);
+      var params = new URLSearchParams(currentUrl.search);
+      if (params.has("navigate")) {
+        var navigateAttribute = params.get("navigate");
+        if (navigateAttribute === "true") {
+          params.delete("navigate");
+          currentUrl.search = params.toString();
+          window.history.pushState({}, "", currentUrl.href);
+          el.find(".button-kiosk").click();
+        }
+      } else {
+        setTimeout(function () {
+          el.addClass("show");
+          updatePopoverPosition();
+        }, 50);
+      }
     }
     var buttonClosePopup = $(".popover-close");
 
@@ -560,9 +559,23 @@ if ($(".shops-map").length) {
   function pinPopover(shopId, content = "") {
     $("#disable-selection").removeClass("display-hidden");
 
+    // Получаем объект магазина по его ID
+    var shop = mapShops[shopId.toLowerCase()];
+    var tag = shop.link ? "a href='#'" : "div class='notLink shop-popover' "; // Используем <a> если есть link, иначе <div>
+
+    // Создаем HTML для нового popover элемента
     var newShopPopoverHtml =
-      '<a href="#" data-belongs-to="' + shopId + '" class="shop-popover"></a>';
+      "<" +
+      tag +
+      ' data-belongs-to="' +
+      shopId +
+      '" class="shop-popover"></' +
+      tag +
+      ">";
+
+    // Добавляем элемент на карту
     $("#floor-map").append(newShopPopoverHtml);
+
     var el = $(
       '.shop-popover:not(.general-shop-popover)[data-belongs-to="' +
         shopId +
