@@ -309,9 +309,7 @@ if ($(".shops-map").length) {
       if (content == "") {
         popoverHtml =
           '<span class="popover-header" style="background-color:' +
-          (shopItem.categories.length
-            ? shopItem.categories[0].color
-            : disabledColor) +
+          shopItem.categories[0].color +
           ';">' +
           mapShops[shopId].name +
           "</span>";
@@ -643,31 +641,44 @@ if ($(".shops-map").length) {
     });
   }
 
-  $("#floor-map *[id*=_1_]").on("click", function (e) {
-    e.preventDefault();
-    if (!isTouchDevice()) {
-      if ($(this).attr("data-disabled") === "false") {
-        var shopId = $(this).attr("id").split("_")[0];
+  document
+    .querySelectorAll("#floor-map *[id*=_1_]")
+    .forEach(function (element) {
+      element.addEventListener("click", function (e) {
+        e.preventDefault();
 
-        Object.keys(mapShops).forEach(function (key) {
-          if (key.toLowerCase() === shopId.toLowerCase()) {
-            if (mapShops[key].link != "#") {
-              setTimeout(function () {
-                document.location.href = mapShops[key].link;
-              }, 250);
-            }
+        // Проверяем, является ли устройство touch-устройством
+        if (!isTouchDevice()) {
+          // Проверяем, не заблокирован ли элемент
+          if (this.getAttribute("data-disabled") === "false") {
+            var shopId = this.id.split("_")[0]; // Получаем ID магазина
+
+            // Проходим по объекту mapShops и ищем совпадения
+            Object.keys(mapShops).forEach(function (key) {
+              if (key.toLowerCase() === shopId.toLowerCase()) {
+                if (mapShops[key].link != "#") {
+                  // Переход на страницу через 250 мс
+                  setTimeout(function () {
+                    document.location.href = mapShops[key].link;
+                  }, 250);
+                }
+              }
+            });
           }
-        });
-      }
-    } else {
-      var shopId = $(this).attr("id").split("_")[0].substring(1).toLowerCase();
+        } else {
+          // Если это touch-устройство, то обработка другая
+          var shopId = this.id.split("_")[0].substring(1).toLowerCase();
 
-      console.log(shopId);
-      $("#map-search-shop").val(shopId).change();
+          console.log(shopId);
+          document.getElementById("map-search-shop").value = shopId;
+          document
+            .getElementById("map-search-shop")
+            .dispatchEvent(new Event("change"));
 
-      updatePopoverPosition();
-    }
-  });
+          updatePopoverPosition(); // Обновляем позицию всплывающего окна
+        }
+      });
+    });
 
   if (!isTouchDevice()) {
     $("[id^=info-icon]:not(.disabled)").on("mouseenter", function () {
@@ -1135,7 +1146,12 @@ if ($(".shops-map").length) {
       }
     }
   });
-
+  $(document).on("click", function (e) {
+    var popover = $(".shop-popover");
+    if (!$(e.target).closest(popover).length && popover.is(":visible")) {
+      resetFilters();
+    }
+  });
   if ($("#shops-map-page").length) {
     // pan and zome
     var eventsHandler;
