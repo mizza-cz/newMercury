@@ -1323,6 +1323,9 @@ if ($(".shops-map").length) {
     $("#map-floor-tabs #floor2-map-tab").on("shown.bs.tab", function (event) {
       setMap("floor2-map");
     });
+    $("#map-floor-tabs #floor3-map-tab").on("shown.bs.tab", function (event) {
+      setMap("floor3-map");
+    });
 
     function resetPanZoom() {
       panZoom.resize();
