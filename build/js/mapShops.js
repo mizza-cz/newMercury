@@ -1,20 +1,20 @@
 // svg map - start
-var disabledColor = "#e2e2e2";
+var disabledColor = '#e2e2e2';
 var currentMap = null;
-var currentLanguage = "cs";
+var currentLanguage = 'cs';
 //Print color styles
 var notSelector = '[data-disabled="false"]';
 var hideInfoElementsSelectors = [
-  "*[id^=info-icon]", //All infoicons
-  ".st29", //Entrances 1,2
-  "#parkovisko_vonkajsie_2", //Parking 2
-  "*[id^=parkovisko_vonkajsie_1_]", //Parking 1
-  ".st145", // Arror parking
-  ".st16",
-  "#vchod_3", //Entrance 3
-  "#parkovisko_vonkajsie_3",
-  "#parkovisko_vonkajsie_4",
-  "#vchod_4",
+  '*[id^=info-icon]', //All infoicons
+  '.st29', //Entrances 1,2
+  '#parkovisko_vonkajsie_2', //Parking 2
+  '*[id^=parkovisko_vonkajsie_1_]', //Parking 1
+  '.st145', // Arror parking
+  '.st16',
+  '#vchod_3', //Entrance 3
+  '#parkovisko_vonkajsie_3',
+  '#parkovisko_vonkajsie_4',
+  '#vchod_4',
 ];
 
 function LightenDarkenColor(color, percent) {
@@ -34,11 +34,11 @@ function LightenDarkenColor(color, percent) {
   G = Math.round(G);
   B = Math.round(B);
 
-  var RR = R.toString(16).length == 1 ? "0" + R.toString(16) : R.toString(16);
-  var GG = G.toString(16).length == 1 ? "0" + G.toString(16) : G.toString(16);
-  var BB = B.toString(16).length == 1 ? "0" + B.toString(16) : B.toString(16);
+  var RR = R.toString(16).length == 1 ? '0' + R.toString(16) : R.toString(16);
+  var GG = G.toString(16).length == 1 ? '0' + G.toString(16) : G.toString(16);
+  var BB = B.toString(16).length == 1 ? '0' + B.toString(16) : B.toString(16);
 
-  return "#" + RR + GG + BB;
+  return '#' + RR + GG + BB;
 }
 
 mapCategories = mapCategories.map(function (c) {
@@ -54,9 +54,9 @@ mapCategories = mapCategories.map(function (c) {
   };
 });
 
-$(hideInfoElementsSelectors.join(",")).addClass("hideable");
+$(hideInfoElementsSelectors.join(',')).addClass('hideable');
 
-$("#category-styles").html(
+$('#category-styles').html(
   [
     ...mapCategories.map(function (c) {
       return `
@@ -128,48 +128,48 @@ $("#category-styles").html(
                 pointer-events: none !important;
             }
         `,
-  ].join("")
+  ].join(''),
 );
 
 //Assign proper classes to all entities
 Object.values(mapPlaces).forEach(function (place) {
-  var placeId = place.toLowerCase().replace(/ /g, "");
+  var placeId = place.toLowerCase().replace(/ /g, '');
 
   $(
-    `#floor-map svg *[id^=s${placeId}_1_], #floor-map svg *[id^=s${placeId.toUpperCase()}_1_]`
-  ).addClass("disabled");
+    `#floor-map svg *[id^=s${placeId}_1_], #floor-map svg *[id^=s${placeId.toUpperCase()}_1_]`,
+  ).addClass('disabled');
   $(
-    `#floor-map svg *[id^=s${placeId}_2_], #floor-map svg *[id^=s${placeId.toUpperCase()}_2_]`
-  ).addClass("disabled darker");
+    `#floor-map svg *[id^=s${placeId}_2_], #floor-map svg *[id^=s${placeId.toUpperCase()}_2_]`,
+  ).addClass('disabled darker');
   $(
-    `#floor-map svg *[id^=s${placeId}_3_], #floor-map svg *[id^=s${placeId.toUpperCase()}_3_]`
-  ).addClass("disabled dark");
+    `#floor-map svg *[id^=s${placeId}_3_], #floor-map svg *[id^=s${placeId.toUpperCase()}_3_]`,
+  ).addClass('disabled dark');
 });
 
 Object.values(mapShops).forEach(function (ms) {
   if (ms.categories.length) {
-    var shopId = ms.shop_code.toLowerCase().replace(/ /g, "");
+    var shopId = ms.shop_code.toLowerCase().replace(/ /g, '');
 
     var $elements = $(
-      `#floor-map svg *[id^=s${shopId}_], #floor-map svg *[id^=s${shopId.toUpperCase()}_]`
+      `#floor-map svg *[id^=s${shopId}_], #floor-map svg *[id^=s${shopId.toUpperCase()}_]`,
     );
 
-    $elements.removeClass("disabled").attr("data-disabled", "false");
+    $elements.removeClass('disabled').attr('data-disabled', 'false');
 
     $(
-      `#floor-map svg *[id^=s${shopId}_1], #floor-map svg *[id^=s${shopId.toUpperCase()}_1]`
+      `#floor-map svg *[id^=s${shopId}_1], #floor-map svg *[id^=s${shopId.toUpperCase()}_1]`,
     ).addClass(`category-${ms.categories[0].id}`);
     $(
-      `#floor-map svg *[id^=s${shopId}_2], #floor-map svg *[id^=s${shopId.toUpperCase()}_2]`
+      `#floor-map svg *[id^=s${shopId}_2], #floor-map svg *[id^=s${shopId.toUpperCase()}_2]`,
     ).addClass(`category-${ms.categories[0].id} darker`);
     $(
-      `#floor-map svg *[id^=s${shopId}_3], #floor-map svg *[id^=s${shopId.toUpperCase()}_3]`
+      `#floor-map svg *[id^=s${shopId}_3], #floor-map svg *[id^=s${shopId.toUpperCase()}_3]`,
     ).addClass(`category-${ms.categories[0].id} dark`);
   }
 });
 
 function updateHeightBasedOnWidth() {
-  var element = $("#floor-map>.maps-conatiner");
+  var element = $('#floor-map>.maps-conatiner');
   var width = element.width();
   var optimalHeight;
 
@@ -185,81 +185,81 @@ function updateHeightBasedOnWidth() {
 function filterShops(val) {
   val = val.toLocaleLowerCase().trim();
 
-  var shopsLength = $(".mapshowshop").length;
+  var shopsLength = $('.mapshowshop').length;
 
-  $(".mapshowshop").each(function (e, element) {
+  $('.mapshowshop').each(function (e, element) {
     var shopName = $(element).text();
 
     if (!shopName.toLocaleLowerCase().trim().includes(val)) {
       $(element).slideUp(100);
     } else {
-      $(element).parents(".mapshowshops").slideDown(100);
+      $(element).parents('.mapshowshops').slideDown(100);
       $(element).slideDown(200);
     }
   });
 
-  $(".mapshowshop")
+  $('.mapshowshop')
     .promise()
     .done(function () {
-      var hiddenParentShops = $(".mapshowshops").filter(function () {
-        return $(this).find(".mapshowshop").not(":hidden").length === 0;
+      var hiddenParentShops = $('.mapshowshops').filter(function () {
+        return $(this).find('.mapshowshop').not(':hidden').length === 0;
       });
 
       $(hiddenParentShops).slideUp(100);
 
       // If resul is empty show alert
-      if (hiddenParentShops.find(".mapshowshop").length === shopsLength) {
-        $("#filtered-shops-alert").show();
+      if (hiddenParentShops.find('.mapshowshop').length === shopsLength) {
+        $('#filtered-shops-alert').show();
       } else {
-        $("#filtered-shops-alert").hide();
+        $('#filtered-shops-alert').hide();
       }
     });
 }
 
-if ($(".shops-map").length) {
-  if ($(".is-kiosk-map").length === 0) {
-    $(window).on("resize", updateHeightBasedOnWidth());
+if ($('.shops-map').length) {
+  if ($('.is-kiosk-map').length === 0) {
+    $(window).on('resize', updateHeightBasedOnWidth());
     $(document).ready(updateHeightBasedOnWidth());
   }
 
-  var filterInput = $("#input-map-search-shop");
+  var filterInput = $('#input-map-search-shop');
   if (filterInput.length) {
-    filterInput.on("keyup", function (e) {
+    filterInput.on('keyup', function (e) {
       var input = $(e.target);
 
-      if (input.val().trim() !== "") {
-        $(".reset-search-svg").show();
+      if (input.val().trim() !== '') {
+        $('.reset-search-svg').show();
       } else {
-        $(".reset-search-svg").hide();
+        $('.reset-search-svg').hide();
       }
 
       filterShops(input.val());
     });
 
-    $(".reset-search-svg").on("click", function () {
-      filterInput.val("");
-      filterShops("");
-      $(".reset-search-svg").hide();
+    $('.reset-search-svg').on('click', function () {
+      filterInput.val('');
+      filterShops('');
+      $('.reset-search-svg').hide();
     });
   }
 
   function enableMapItem(itemId) {
     disableAllExcept([itemId]);
 
-    var kiosk = $(".tab-content").data("kiosk-id");
+    var kiosk = $('.tab-content').data('kiosk-id');
 
     if (kiosk > 0) {
-      $(".map-kiosks").each(function () {
+      $('.map-kiosks').each(function () {
         var kioskLayout = $(this);
-        if (kioskLayout.hasClass("active")) {
-          kioskLayout.removeClass("active");
+        if (kioskLayout.hasClass('active')) {
+          kioskLayout.removeClass('active');
         }
         $(this)
-          .find("path")
+          .find('path')
           .each(function () {
             var pathLayout = $(this);
-            if (pathLayout.hasClass("active")) {
-              pathLayout.removeClass("active");
+            if (pathLayout.hasClass('active')) {
+              pathLayout.removeClass('active');
             }
           });
       });
@@ -267,53 +267,48 @@ if ($(".shops-map").length) {
   }
 
   function enableAllMapItems() {
-    $("*[data-disabled]").attr("data-disabled", "false");
+    $('*[data-disabled]').attr('data-disabled', 'false');
   }
 
   function disableAllMapItems() {
-    $("*[data-disabled]").attr("data-disabled", "true");
+    $('*[data-disabled]').attr('data-disabled', 'true');
   }
 
   function disableAllExcept(itemIdArr) {
-    $("*[data-disabled]").attr("data-disabled", "true");
+    $('*[data-disabled]').attr('data-disabled', 'true');
 
     for (var itemId of itemIdArr) {
-      var shopId = (itemId[0] === "s" ? itemId.substring(1) : itemId)
+      var shopId = (itemId[0] === 's' ? itemId.substring(1) : itemId)
         .toLowerCase()
-        .replace(/ /g, "");
+        .replace(/ /g, '');
 
-      $(`*[id^=s${shopId}_],*[id^=s${shopId.toUpperCase()}_]`).attr(
-        "data-disabled",
-        "false"
-      );
+      $(`*[id^=s${shopId}_],*[id^=s${shopId.toUpperCase()}_]`).attr('data-disabled', 'false');
     }
   }
 
   function highlightShop(shopId) {
     if (shopId && mapShops[shopId]) {
-      var shopId = mapShops[shopId].shop_code.toLowerCase().replace(/ /g, "");
+      var shopId = mapShops[shopId].shop_code.toLowerCase().replace(/ /g, '');
 
-      $(`*[id^=s${shopId}_], *[id^=s${shopId.toUpperCase()}_]`).toggleClass(
-        "highlight"
-      );
+      $(`*[id^=s${shopId}_], *[id^=s${shopId.toUpperCase()}_]`).toggleClass('highlight');
     }
   }
 
-  function updatePopover(el, shopId, content = "") {
+  function updatePopover(el, shopId, content = '') {
     var shopItem = mapShops[shopId.toLowerCase()];
     if (shopItem) {
       shopId = shopId.toLowerCase();
 
-      var isKiosk = $(".is-kiosk-map");
-      var popoverHtml = "";
-      if (content == "") {
+      var isKiosk = $('.is-kiosk-map');
+      var popoverHtml = '';
+      if (content == '') {
         popoverHtml =
           '<span class="popover-header" style="background-color:' +
           shopItem.categories[0].color +
           ';">' +
           mapShops[shopId].name +
-          "</span>";
-        if (mapShops[shopId].img_src != "") {
+          '</span>';
+        if (mapShops[shopId].img_src != '') {
           popoverHtml +=
             '<div class="popover-image-wrapper"><img class="popover-logo" src="' +
             mapShops[shopId].img_src +
@@ -323,48 +318,48 @@ if ($(".shops-map").length) {
           popoverHtml += '<div class="popover-close">x</div>';
           popoverHtml +=
             '<button class="btn btn-primary default-font-extrabold py-3 px-4 justify-content-center border-rd-14 button-kiosk" onclick="kioskFindPath(this)" data-belongs-to="' +
-            shopId.toUpperCase().replace("S", "#map-item-") +
+            shopId.toUpperCase().replace('S', '#map-item-') +
             '">NAVIGOVAĹ¤</button>';
           popoverHtml +=
             '<a class="btn primary-text default-font-medium px-0 py-2 text-left arrow-right arrow-lg custom-font-size-btn text-uppercase" href="' +
             mapShops[shopId].link +
             '"">VIAC INFO</a>';
         }
-        el.attr("data-belongs-to", shopId);
+        el.attr('data-belongs-to', shopId);
       } else {
-        el.addClass("min-popover");
+        el.addClass('min-popover');
         popoverHtml +=
           '<img src="/themes/borymall/assets/imgs/svg/icons/location-primary.svg" alt="location" class="img-fluid popover-icon" />';
-        popoverHtml += '<span class="popover-text">' + content + "</span>";
+        popoverHtml += '<span class="popover-text">' + content + '</span>';
       }
       el.html(popoverHtml);
 
       setTimeout(function () {
-        el.addClass("show");
+        el.addClass('show');
         updatePopoverPosition();
       }, 50);
 
       var currentUrl = new URL(window.location.href);
       var params = new URLSearchParams(currentUrl.search);
-      if (params.has("navigate")) {
-        var navigateAttribute = params.get("navigate");
-        if (navigateAttribute === "true") {
-          params.delete("navigate");
+      if (params.has('navigate')) {
+        var navigateAttribute = params.get('navigate');
+        if (navigateAttribute === 'true') {
+          params.delete('navigate');
           currentUrl.search = params.toString();
-          window.history.pushState({}, "", currentUrl.href);
-          el.find(".button-kiosk").click();
+          window.history.pushState({}, '', currentUrl.href);
+          el.find('.button-kiosk').click();
         }
       } else {
         setTimeout(function () {
-          el.addClass("show");
+          el.addClass('show');
           updatePopoverPosition();
         }, 50);
       }
     }
-    var buttonClosePopup = $(".popover-close");
+    var buttonClosePopup = $('.popover-close');
 
     if (buttonClosePopup.length) {
-      buttonClosePopup.on("click", function () {
+      buttonClosePopup.on('click', function () {
         resetFilters();
       });
     }
@@ -372,93 +367,89 @@ if ($(".shops-map").length) {
 
   function kioskFindPath(el) {
     var floor = 1;
-    var kiosk = $(".tab-content").data("kiosk-id");
-    var itemId = $(el).data("belongs-to");
+    var kiosk = $('.tab-content').data('kiosk-id');
+    var itemId = $(el).data('belongs-to');
 
-    var itemIdCheck = itemId.replace("#map-item-", "");
+    var itemIdCheck = itemId.replace('#map-item-', '');
 
-    var getFloor = $(".mapshowshops").find(
-      "[data-shop-id='" + itemIdCheck.toLowerCase() + "']"
-    );
+    var getFloor = $('.mapshowshops').find("[data-shop-id='" + itemIdCheck.toLowerCase() + "']");
 
-    if (itemIdCheck.replace(/\D/g, "") > 115) {
+    if (itemIdCheck.replace(/\D/g, '') > 115) {
       floor = 2;
     }
 
-    if (itemIdCheck.replace(/\D/g, "") < 0) {
+    if (itemIdCheck.replace(/\D/g, '') < 0) {
       floor = 0;
     }
 
     if (getFloor.length > 0) {
-      floor = getFloor.data("shop-floor");
+      floor = getFloor.data('shop-floor');
     }
 
-    var kioskId = "kiosk-" + kiosk;
+    var kioskId = 'kiosk-' + kiosk;
 
     if (floor === 2 && kiosk <= 4) {
       switch (kiosk) {
         case 1:
-          kioskId = "kiosk-9";
+          kioskId = 'kiosk-9';
           break;
         case 2:
-          kioskId = "kiosk-6";
+          kioskId = 'kiosk-6';
           break;
         case 3:
-          kioskId = "kiosk-7";
+          kioskId = 'kiosk-7';
           break;
         case 4:
-          kioskId = "kiosk-8";
+          kioskId = 'kiosk-8';
           break;
       }
-      $(".alert-p-2").show();
+      $('.alert-p-2').show();
     }
 
     if (floor === 1 && kiosk >= 5) {
       switch (kiosk) {
         case 5:
-          kioskId = "kiosk-1";
+          kioskId = 'kiosk-1';
           break;
         case 6:
-          kioskId = "kiosk-2";
+          kioskId = 'kiosk-2';
           break;
         case 7:
-          kioskId = "kiosk-3";
+          kioskId = 'kiosk-3';
           break;
         case 8:
-          kioskId = "kiosk-4";
+          kioskId = 'kiosk-4';
           break;
         case 9:
-          kioskId = "kiosk-1";
+          kioskId = 'kiosk-1';
           break;
       }
-      $(".alert-p-1").show();
+      $('.alert-p-1').show();
     }
 
-    $("#" + kioskId + "-item, [id^=" + kioskId + "-item_]").show();
+    $('#' + kioskId + '-item, [id^=' + kioskId + '-item_]').show();
 
     if (floor === 0 && kiosk >= 1) {
-      $(".alert-p-garage").show();
+      $('.alert-p-garage').show();
     }
 
     if (kiosk > 0) {
-      $(hideInfoElementsSelectors.join(",")).addClass("hide");
+      $(hideInfoElementsSelectors.join(',')).addClass('hide');
 
-      $("#floor1 .active, #floor2 .active").each(function () {
-        $(this).removeClass("active");
+      $('#floor1 .active, #floor2 .active').each(function () {
+        $(this).removeClass('active');
       });
 
-      var trace = $("#floor" + floor + " *[id^=" + kioskId + "]");
+      var trace = $('#floor' + floor + ' *[id^=' + kioskId + ']');
 
-      trace.addClass("active");
+      trace.addClass('active');
       trace
-        .find(
-          "path[id^=" + itemId.substring(1) + "_],path#" + itemId.substring(1)
-        )
-        .addClass("active");
+        .find('path[id^=' + itemId.substring(1) + '_],path#' + itemId.substring(1))
+        .addClass('active');
     }
 
     clearPopover();
-    $("#filtered-shops-alert").hide();
+    $('#filtered-shops-alert').hide();
   }
 
   function getOffset(element) {
@@ -471,12 +462,12 @@ if ($(".shops-map").length) {
   }
 
   function updatePopoverPosition() {
-    $(".shop-popover").each(function (index, el) {
-      if ($(el).attr("data-belongs-to")) {
+    $('.shop-popover').each(function (index, el) {
+      if ($(el).attr('data-belongs-to')) {
         var shopId = (
-          $(el).attr("data-belongs-to")[0].toLowerCase() === "s"
-            ? $(el).attr("data-belongs-to").substring(1)
-            : $(el).attr("data-belongs-to")
+          $(el).attr('data-belongs-to')[0].toLowerCase() === 's'
+            ? $(el).attr('data-belongs-to').substring(1)
+            : $(el).attr('data-belongs-to')
         ).toLowerCase();
 
         var pointsToEl = $(
@@ -484,21 +475,15 @@ if ($(".shops-map").length) {
             shopId +
             '_1"], #floor-map *[id^="s' +
             shopId.toUpperCase() +
-            '_1"]'
+            '_1"]',
         );
 
-        if (
-          $("#shops-map-page").length &&
-          !$(el).hasClass("general-shop-popover")
-        ) {
-          var currentActiveTab = $("#map-floor-tabs a.active").first();
-          if (
-            mapShops[$(el).attr("data-belongs-to")].floorid !=
-            currentActiveTab.data("floor")
-          ) {
-            $(el).removeClass("show");
+        if ($('#shops-map-page').length && !$(el).hasClass('general-shop-popover')) {
+          var currentActiveTab = $('#map-floor-tabs a.active').first();
+          if (mapShops[$(el).attr('data-belongs-to')].floorid != currentActiveTab.data('floor')) {
+            $(el).removeClass('show');
           } else {
-            $(el).addClass("show");
+            $(el).addClass('show');
           }
         }
 
@@ -516,46 +501,43 @@ if ($(".shops-map").length) {
           customTop;
 
         if (isTouchDevice()) {
-          if ($(el).hasClass("arrow-flip")) {
-            $(el).removeClass("arrow-flip");
+          if ($(el).hasClass('arrow-flip')) {
+            $(el).removeClass('arrow-flip');
           }
           if (needSwap < 300) {
             customTop = -($(el).height() / 2) - 10;
             newCalc =
               getOffset(pointsToEl[0]).top +
-              (pointsToEl[0].getBoundingClientRect().height - $(el).height()) /
-                2 -
+              (pointsToEl[0].getBoundingClientRect().height - $(el).height()) / 2 -
               customTop;
-            $(el).addClass("arrow-flip");
+            $(el).addClass('arrow-flip');
           }
         }
 
-        $(el).css("top", newCalc);
+        $(el).css('top', newCalc);
         $(el).css(
-          "left",
+          'left',
           getOffset(pointsToEl[0]).left +
-            (pointsToEl[0].getBoundingClientRect().width - $(el).width()) / 2
+            (pointsToEl[0].getBoundingClientRect().width - $(el).width()) / 2,
         );
 
         setTimeout(function () {
-          $(el).css("visiblity", "visible");
+          $(el).css('visiblity', 'visible');
         }, 50);
       }
     });
   }
 
   function clearPopover() {
-    $(".shop-popover:not(.general-shop-popover)").each(function (index, el) {
-      var pointsToEl = $(
-        "#floor-map *[id^=" + $(el).attr("data-belongs-to") + "]"
-      );
-      pointsToEl.removeClass("pinned");
+    $('.shop-popover:not(.general-shop-popover)').each(function (index, el) {
+      var pointsToEl = $('#floor-map *[id^=' + $(el).attr('data-belongs-to') + ']');
+      pointsToEl.removeClass('pinned');
       $(el).remove();
     });
   }
 
-  function pinPopover(shopId, content = "") {
-    $("#disable-selection").removeClass("display-hidden");
+  function pinPopover(shopId, content = '') {
+    $('#disable-selection').removeClass('display-hidden');
 
     // Получаем объект магазина по его ID
     var shop = mapShops[shopId.toLowerCase()];
@@ -563,30 +545,20 @@ if ($(".shops-map").length) {
 
     // Создаем HTML для нового popover элемента
     var newShopPopoverHtml =
-      "<" +
-      tag +
-      ' data-belongs-to="' +
-      shopId +
-      '" class="shop-popover"></' +
-      tag +
-      ">";
+      '<' + tag + ' data-belongs-to="' + shopId + '" class="shop-popover"></' + tag + '>';
 
     // Добавляем элемент на карту
-    $("#floor-map").append(newShopPopoverHtml);
+    $('#floor-map').append(newShopPopoverHtml);
 
-    var el = $(
-      '.shop-popover:not(.general-shop-popover)[data-belongs-to="' +
-        shopId +
-        '"]'
-    );
+    var el = $('.shop-popover:not(.general-shop-popover)[data-belongs-to="' + shopId + '"]');
     updatePopover(el, shopId, content);
     var pointsToEl = $('#floor-map *[id^="' + shopId + '_1"]');
-    pointsToEl.addClass("pinned");
+    pointsToEl.addClass('pinned');
     clearPopoverInfoIcon();
     updatePopoverPosition();
   }
 
-  $(window).on("resize", function () {
+  $(window).on('resize', function () {
     updatePopoverPosition();
   });
 
@@ -594,295 +566,256 @@ if ($(".shops-map").length) {
     var selector = Object.keys(mapShops)
       .map(function (el, index) {
         return (
-          "*[id^=s" +
+          '*[id^=s' +
           el.substring(1).toLocaleLowerCase() +
-          "_1_],*[id^=s" +
+          '_1_],*[id^=s' +
           el.substring(1).toLocaleUpperCase() +
-          "_1_]"
+          '_1_]'
         );
       })
-      .join(",");
+      .join(',');
 
-    $(selector).on("mouseenter", function () {
-      if (!$(this).hasClass("disabled") && !$(this).hasClass("pinned")) {
-        var shopId = $(this).attr("id").split("_")[0];
+    $(selector).on('mouseenter', function () {
+      if (!$(this).hasClass('disabled') && !$(this).hasClass('pinned')) {
+        var shopId = $(this).attr('id').split('_')[0];
 
         highlightShop(shopId);
 
-        updatePopover($(".general-shop-popover"), shopId);
+        updatePopover($('.general-shop-popover'), shopId);
       }
     });
 
-    $(selector).on("mousemove", function (e) {
-      if (!$(this).hasClass("disabled") && !$(this).hasClass("pinned")) {
-        $(".general-shop-popover").css(
-          "top",
-          e.pageY - $(".general-shop-popover").height() - 25
-        );
-        $(".general-shop-popover").css(
-          "left",
-          e.pageX - $(".general-shop-popover").width() / 2
-        );
+    $(selector).on('mousemove', function (e) {
+      if (!$(this).hasClass('disabled') && !$(this).hasClass('pinned')) {
+        $('.general-shop-popover').css('top', e.pageY - $('.general-shop-popover').height() - 25);
+        $('.general-shop-popover').css('left', e.pageX - $('.general-shop-popover').width() / 2);
       }
     });
 
-    $(selector).on("mouseleave", function (e) {
-      if (!$(this).hasClass("disabled")) {
-        var shopId = $(this).attr("id").split("_")[0];
+    $(selector).on('mouseleave', function (e) {
+      if (!$(this).hasClass('disabled')) {
+        var shopId = $(this).attr('id').split('_')[0];
 
         highlightShop(shopId);
 
         setTimeout(function () {
-          $(
-            '.general-shop-popover[data-belongs-to="' + shopId + '"]'
-          ).removeClass("show");
+          $('.general-shop-popover[data-belongs-to="' + shopId + '"]').removeClass('show');
         }, 50);
       }
     });
   }
 
-  document
-    .querySelectorAll("#floor-map *[id*=_1_]")
-    .forEach(function (element) {
-      element.addEventListener("click", function (e) {
-        e.preventDefault();
+  document.querySelectorAll('#floor-map *[id*=_1_]').forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      e.preventDefault();
 
-        // Проверяем, является ли устройство touch-устройством
-        if (!isTouchDevice()) {
-          // Проверяем, не заблокирован ли элемент
-          if (this.getAttribute("data-disabled") === "false") {
-            var shopId = this.id.split("_")[0]; // Получаем ID магазина
+      // Проверяем, что элемент доступен
+      if (this.getAttribute('data-disabled') === 'false') {
+        var shopId = this.id.split('_')[0]; // Получаем ID магазина
 
-            // Проходим по объекту mapShops и ищем совпадения
-            Object.keys(mapShops).forEach(function (key) {
-              if (key.toLowerCase() === shopId.toLowerCase()) {
-                if (mapShops[key].link != "#") {
-                  // Переход на страницу через 250 мс
-                  setTimeout(function () {
-                    document.location.href = mapShops[key].link;
-                  }, 250);
-                }
-              }
-            });
-          }
+        if (shopId) {
+          shopId = shopId.toLowerCase();
         } else {
-          // Если это touch-устройство, то обработка другая
-          var shopId = this.id.split("_")[0].substring(1).toLowerCase();
-
-          console.log(shopId);
-          document.getElementById("map-search-shop").value = shopId;
-          document
-            .getElementById("map-search-shop")
-            .dispatchEvent(new Event("change"));
-
-          updatePopoverPosition(); // Обновляем позицию всплывающего окна
+          console.error('Ошибка: некорректный shopId');
+          return;
         }
-      });
+
+        // Проверяем существование магазина в mapShops
+        if (mapShops[shopId]) {
+          console.log('Магазин найден:', mapShops[shopId]);
+        } else {
+          console.error(`Магазин с ID ${shopId} не найден`);
+          return;
+        }
+
+        // Выполняем дальнейшие действия
+      } else {
+        console.warn('Элемент недоступен для взаимодействия.');
+      }
     });
+  });
 
   if (!isTouchDevice()) {
-    $("[id^=info-icon]:not(.disabled)").on("mouseenter", function () {
-      if (!$(this).hasClass("pinned")) {
-        updatePopoverInfoIcon($(".general-info-icon"), $(this).attr("id"));
+    $('[id^=info-icon]:not(.disabled)').on('mouseenter', function () {
+      if (!$(this).hasClass('pinned')) {
+        updatePopoverInfoIcon($('.general-info-icon'), $(this).attr('id'));
       }
     });
 
-    $("[id^=info-icon]:not(.disabled)").on("mousemove", function (e) {
-      if (!$(this).hasClass("pinned")) {
-        $(".general-info-icon").css(
-          "top",
-          e.pageY - $(".general-info-icon").height() - 25
-        );
-        $(".general-info-icon").css(
-          "left",
-          e.pageX - $(".general-info-icon").width() / 2
-        );
+    $('[id^=info-icon]:not(.disabled)').on('mousemove', function (e) {
+      if (!$(this).hasClass('pinned')) {
+        $('.general-info-icon').css('top', e.pageY - $('.general-info-icon').height() - 25);
+        $('.general-info-icon').css('left', e.pageX - $('.general-info-icon').width() / 2);
       }
     });
 
-    $("[id^=info-icon]:not(.disabled)").on("mouseleave", function (e) {
-      var popoverId = $(".general-info-icon").attr("data-belongs-to");
+    $('[id^=info-icon]:not(.disabled)').on('mouseleave', function (e) {
+      var popoverId = $('.general-info-icon').attr('data-belongs-to');
 
-      $('.general-info-icon[data-belongs-to="' + popoverId + '"]').removeClass(
-        "show"
-      );
+      $('.general-info-icon[data-belongs-to="' + popoverId + '"]').removeClass('show');
     });
   } else {
-    $("[id^=info-icon]:not(.disabled)").on("click", function (e) {
+    $('[id^=info-icon]:not(.disabled)').on('click', function (e) {
       clearPopoverInfoIcon();
       resetFilters();
 
       var clickedItem = $(this);
 
-      pinPopoverInfoIcon(clickedItem.attr("id"));
+      pinPopoverInfoIcon(clickedItem.attr('id'));
     });
   }
 
   function clearPopoverInfoIcon() {
-    $(".info-icon-popover:not(.general-info-icon)").each(function (index, el) {
-      var pointsToEl = $(
-        '.floor-signs-icons g[id="' + $(el).attr("data-belongs-to") + '"]'
-      );
-      pointsToEl.removeClass("pinned");
+    $('.info-icon-popover:not(.general-info-icon)').each(function (index, el) {
+      var pointsToEl = $('.floor-signs-icons g[id="' + $(el).attr('data-belongs-to') + '"]');
+      pointsToEl.removeClass('pinned');
       $(el).remove();
     });
   }
 
-  function pinPopoverInfoIcon(iconId, content = "") {
+  function pinPopoverInfoIcon(iconId, content = '') {
     var newShopPopoverHtml =
-      '<a href="#" data-belongs-to="' +
-      iconId +
-      '" class="info-icon-popover"></a>';
-    $("#floor-map").append(newShopPopoverHtml);
-    var el = $(
-      '.info-icon-popover:not(.general-info-icon)[data-belongs-to="' +
-        iconId +
-        '"]'
-    );
+      '<a href="#" data-belongs-to="' + iconId + '" class="info-icon-popover"></a>';
+    $('#floor-map').append(newShopPopoverHtml);
+    var el = $('.info-icon-popover:not(.general-info-icon)[data-belongs-to="' + iconId + '"]');
     updatePopoverInfoIcon(el, iconId, content);
 
     var pointsToEl = $('.floor-signs-icons g[id="' + iconId + '"]');
-    pointsToEl.addClass("pinned");
+    pointsToEl.addClass('pinned');
 
     updatePopoverPositionInfoIcon();
   }
 
-  function updatePopoverInfoIcon(el, iconId, content = "") {
+  function updatePopoverInfoIcon(el, iconId, content = '') {
     var infoIconsArray = [
       {
         id: 1,
-        name_cs: "ATM - bankomat",
-        name_en: "ATM",
+        name_cs: 'ATM - bankomat',
+        name_en: 'ATM',
       },
       {
         id: 2,
-        name_cs: "Výtah",
-        name_en: "Lift",
+        name_cs: 'Výtah',
+        name_en: 'Lift',
       },
       {
         id: 3,
-        name_cs: "Eskalátor",
-        name_en: "Escalator",
+        name_cs: 'Eskalátor',
+        name_en: 'Escalator',
       },
       {
         id: 4,
-        name_cs: "Směnárna",
-        name_en: "Exchange",
+        name_cs: 'Směnárna',
+        name_en: 'Exchange',
       },
       {
         id: 5,
-        name_cs: "Infopult",
-        name_en: "Infopoint",
+        name_cs: 'Infopult',
+        name_en: 'Infopoint',
       },
       {
         id: 6,
-        name_cs: "Toalety",
-        name_en: "Toilets",
+        name_cs: 'Toalety',
+        name_en: 'Toilets',
       },
       {
         id: 7,
-        name_cs: "Toalety pro vozíčkáře",
-        name_en: "Accessible toilets",
+        name_cs: 'Toalety pro vozíčkáře',
+        name_en: 'Accessible toilets',
       },
       {
         id: 8,
-        name_cs: "Food court",
-        name_en: "Food Court",
+        name_cs: 'Food court',
+        name_en: 'Food Court',
       },
       {
         id: 9,
-        name_cs: "Dětské hřiště",
-        name_en: "Kid’s Zone",
+        name_cs: 'Dětské hřiště',
+        name_en: 'Kid’s Zone',
       },
 
       {
         id: 11,
-        name_cs: "Foto automat",
-        name_en: "Photo",
+        name_cs: 'Foto automat',
+        name_en: 'Photo',
       },
 
       {
         id: 12,
-        name_cs: "Parkovací automat",
-        name_en: "Parking",
+        name_cs: 'Parkovací automat',
+        name_en: 'Parking',
       },
 
       {
         id: 13,
-        name_cs: "Nabíječka elektromobilů",
-        name_en: "Electric cars charging area",
+        name_cs: 'Nabíječka elektromobilů',
+        name_en: 'Electric cars charging area',
       },
       {
         id: 24,
-        name_cs: "Bankomat",
-        name_en: "Cash machine",
+        name_cs: 'Bankomat',
+        name_en: 'Cash machine',
       },
       {
         id: 25,
-        name_cs: "Kuřácká zóna",
-        name_en: "Smoking area",
+        name_cs: 'Kuřácká zóna',
+        name_en: 'Smoking area',
       },
       {
         id: 26,
-        name_cs: "Lékárna",
-        name_en: "Pharmacy",
+        name_cs: 'Lékárna',
+        name_en: 'Pharmacy',
       },
       {
         id: 27,
-        name_cs: "Kino",
-        name_en: "Cinema",
+        name_cs: 'Kino',
+        name_en: 'Cinema',
       },
     ];
 
     if (iconId) {
-      var isKiosk = $(".is-kiosk-map");
-      var popoverHtml = "";
+      var isKiosk = $('.is-kiosk-map');
+      var popoverHtml = '';
 
       var icon = infoIconsArray.find(function (icon) {
-        return iconId.startsWith("info-icon-" + icon.id + "-");
+        return iconId.startsWith('info-icon-' + icon.id + '-');
       });
 
-      if (content == "" && icon) {
-        var title = currentLanguage === "cs" ? icon.name_cs : icon.name_en;
+      if (content == '' && icon) {
+        var title = currentLanguage === 'sk' ? icon.name_sk : icon.name_en;
 
         popoverHtml =
-          '<span class="popover-header" style="background-color:#3C1211;">' +
-          title +
-          "</span>";
+          '<span class="popover-header" style="background-color:#3C1211;">' + title + '</span>';
 
         if (isKiosk.length) {
           popoverHtml += '<div class="popover-close">x</div>';
         }
 
-        popoverHtml +=
-          '<span class="popover-text" style="padding-top:5px">' +
-          title +
-          "</span>";
+        popoverHtml += '<span class="popover-text" style="padding-top:5px">' + title + '</span>';
 
-        el.attr("data-belongs-to", iconId);
+        el.attr('data-belongs-to', iconId);
       }
 
       el.html(popoverHtml);
-      el.addClass("show");
+      el.addClass('show');
 
       updatePopoverPositionInfoIcon();
     }
 
-    var buttonClosePopup = $(".popover-close");
+    var buttonClosePopup = $('.popover-close');
 
     if (buttonClosePopup.length) {
-      buttonClosePopup.on("click", function () {
+      buttonClosePopup.on('click', function () {
         resetFilters();
       });
     }
   }
+
   function updatePopoverPositionInfoIcon() {
-    $(".info-icon-popover").each(function (index, el) {
-      if ($(el).attr("data-belongs-to")) {
-        $(el).css("visiblity", "hidden");
-        var pointsToEl = $(
-          '#floor-map *[id="' + $(el).attr("data-belongs-to") + '"]'
-        );
+    $('.info-icon-popover').each(function (index, el) {
+      if ($(el).attr('data-belongs-to')) {
+        $(el).css('visiblity', 'hidden');
+        var pointsToEl = $('#floor-map *[id="' + $(el).attr('data-belongs-to') + '"]');
 
         var needSwap = getOffset(pointsToEl[0]).top;
 
@@ -894,32 +827,65 @@ if ($(".shops-map").length) {
           customTop;
 
         if (isTouchDevice()) {
-          if ($(el).hasClass("arrow-flip")) {
-            $(el).removeClass("arrow-flip");
+          if ($(el).hasClass('arrow-flip')) {
+            $(el).removeClass('arrow-flip');
           }
           if (needSwap < 200) {
             customTop = -($(el).height() / 2) - 10;
             newCalc =
               getOffset(pointsToEl[0]).top +
-              (pointsToEl[0].getBoundingClientRect().height - $(el).height()) /
-                2 -
+              (pointsToEl[0].getBoundingClientRect().height - $(el).height()) / 2 -
               customTop;
-            $(el).addClass("arrow-flip");
+            $(el).addClass('arrow-flip');
           }
         }
 
-        $(el).css("top", newCalc);
+        $(el).css('top', newCalc);
         $(el).css(
-          "left",
+          'left',
           getOffset(pointsToEl[0]).left +
-            (pointsToEl[0].getBoundingClientRect().width - $(el).width()) / 2
+            (pointsToEl[0].getBoundingClientRect().width - $(el).width()) / 2,
         );
 
         setTimeout(function () {
-          $(el).css("visiblity", "visible");
+          $(el).css('visiblity', 'visible');
         }, 50);
       }
     });
+  }
+
+  function fixPositionByKiosk(val, kioskId) {
+    var floor = '';
+    var shop = $('.mapshowshop')
+      .filter(
+        "[data-shop-id='" +
+          val.toLowerCase() +
+          "'], [data-shop-other-id='" +
+          val.toLowerCase() +
+          "']",
+      )
+      .first();
+
+    var getFloorShop = shop.attr('data-shop-floor');
+    var otherPathId = shop.attr('data-shop-other-id');
+
+    if (typeof otherPathId === 'undefined') {
+      otherPathId = val;
+    }
+
+    if (kioskId > 0 && kioskId < 5) {
+      floor = 1;
+    } else if (kioskId >= 5) {
+      floor = 2;
+    }
+
+    if (getFloorShop == floor) {
+      val = shop.attr('data-shop-id');
+    } else {
+      val = otherPathId;
+    }
+
+    return val;
   }
 
   function resetFilters(skipSelect) {
@@ -928,43 +894,41 @@ if ($(".shops-map").length) {
     resetPanZoom();
     enableAllMapItems();
 
-    //Reset filter button
-    filterInput.val("");
-    filterShops("");
-    $(".reset-search-svg").hide();
-
-    $("#disable-selection").addClass("display-hidden");
     if (!skipSelect) {
-      $("#map-search-shop").selectpicker("val", "0");
-      $("#map-search-shop")
-        .closest(".input-group")
-        .find(".search-reset")
-        .addClass("hidden");
+      filterInput.val('');
+      filterShops('');
+      $('.reset-search-svg').hide();
     }
-    $("#map-filter-by-category").selectpicker("val", "0");
-    $("#map-filter-by-category")
-      .closest(".input-group")
-      .find(".search-reset")
-      .addClass("hidden");
-    $("#map-filter-by-category")
-      .siblings(".dropdown-toggle")
-      .removeClass("arrow-disabled");
 
-    var floorStatic = $(".floor-signs-icons");
+    //Reset filter button
+    // filterInput.val('');
+    // filterShops('')
+    // $('.reset-search-svg').hide();
+
+    $('#disable-selection').addClass('display-hidden');
+    if (!skipSelect) {
+      $('#map-search-shop').selectpicker('val', '0');
+      $('#map-search-shop').closest('.input-group').find('.search-reset').addClass('hidden');
+    }
+    $('#map-filter-by-category').selectpicker('val', '0');
+    $('#map-filter-by-category').closest('.input-group').find('.search-reset').addClass('hidden');
+    $('#map-filter-by-category').siblings('.dropdown-toggle').removeClass('arrow-disabled');
+
+    var floorStatic = $('.floor-signs-icons');
 
     if (floorStatic.length) {
       floorStatic.each(function () {
-        if ($(this).hasClass("hidden")) {
-          $(this).removeClass("hidden");
+        if ($(this).hasClass('hidden')) {
+          $(this).removeClass('hidden');
         }
       });
     }
 
-    $("path[id^=map-item-].active, [id^=kiosk-].active").removeClass("active");
+    $('path[id^=map-item-].active, [id^=kiosk-].active').removeClass('active');
 
-    var alert1 = $(".alert-p-1");
-    var alert2 = $(".alert-p-2");
-    var alert3 = $(".alert-p-garage");
+    var alert1 = $('.alert-p-1');
+    var alert2 = $('.alert-p-2');
+    var alert3 = $('.alert-p-garage');
 
     if (alert1.length > 0) {
       alert1.hide();
@@ -977,168 +941,203 @@ if ($(".shops-map").length) {
     }
   }
 
-  $("#map-filter-by-category").on("change", function () {
+  $('#map-filter-by-category').on('change', function () {
     var val = $(this).val();
-    resetFilters();
+    var isKiosk = $('.is-kiosk-map');
 
-    if (val == "0") {
-      $(this).closest(".input-group").find(".search-reset").addClass("hidden");
-      $(this).siblings(".dropdown-toggle").removeClass("arrow-disabled");
+    if (val == '0') {
+      resetFilters();
+      $(this).closest('.input-group').find('.search-reset').addClass('hidden');
+      $(this).siblings('.dropdown-toggle').removeClass('arrow-disabled');
     } else {
-      $("#map-filter-by-category").selectpicker("val", val);
+      if (isKiosk.length) {
+        $('.reset-search-svg').show();
+        const inputSearch = $('#input-map-search-shop');
+        const scrollPosition = inputSearch.offset().top - 30;
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth',
+        });
+      }
+      var selectedText = $.trim($(this).find('option:selected').text());
+      var filterInput = $('#input-map-search-shop');
+      filterInput.val(selectedText);
+      filterShops(selectedText);
+
+      resetFilters(true);
+
+      $('#map-filter-by-category').selectpicker('val', val);
       var shopsArr = $(this)
         .find('option[value="' + val + '"]')
-        .data("shops")
-        .split(";");
+        .data('shops')
+        .split(';');
       for (var i = 0; i < shopsArr.length; i++) {
-        shopsArr[i] = "s" + shopsArr[i].toLowerCase();
+        shopsArr[i] = 's' + shopsArr[i].toLowerCase();
       }
-      disableAllExcept(shopsArr);
-      if ($(this).closest(".input-group").find(".search-reset").length == 0) {
-        $(this)
-          .closest(".input-group")
-          .append('<span class="search-reset"></span>');
+
+      // Disable all only for kiosk
+      if (!isKiosk.length) {
+        disableAllExcept(shopsArr);
       }
-      $(this)
-        .closest(".input-group")
-        .find(".search-reset")
-        .removeClass("hidden");
-      $(this).siblings(".dropdown-toggle").addClass("arrow-disabled");
+
+      if ($(this).closest('.input-group').find('.search-reset').length == 0) {
+        $(this).closest('.input-group').append('<span class="search-reset"></span>');
+      }
+      $(this).closest('.input-group').find('.search-reset').removeClass('hidden');
+      $(this).siblings('.dropdown-toggle').addClass('arrow-disabled');
     }
   });
-
-  var hash = window.location.hash;
-
+  var hash = window.location.hash || '';
   if (hash) {
     // Waiting when main svg map loaded
+    var isKiosk = $('.is-kiosk-map');
+
+    var kiosk = $('.tab-content').data('kiosk-id');
+    hash = '#' + fixPositionByKiosk(window.location.hash.slice(1), kiosk);
+
+    $('.search-bar').closest('.input-group').append('<span class="search-reset"></span>');
+
     var mapLoadedInterval = setInterval(function () {
-      var selectedMap = $(".tab-pane.show");
+      var selectedMap = $('.tab-pane.show');
 
       if (selectedMap.length > 0) {
-        clearInterval(mapLoadedInterval);
-
         // Waiting when change floor buttons loaded
-        var changeButtonLoadedInterval = setInterval(function () {
-          var val = hash.slice(1);
+        var val = hash.slice(1);
 
-          $("#map-search-shop").selectpicker("val", val);
-          val = "s" + val.toLowerCase();
-          mapId = mapShops[val].floorid;
+        $('#map-search-shop').selectpicker('val', val);
+        val = 's' + val.toLowerCase();
+        mapShops[val] && mapShops[val].floorid;
 
-          var changeFloorButton = $(
-            '#map-floor-tabs a[data-floor="' + mapId + '"]'
-          );
+        var changeFloorButton = $('#map-floor-tabs a[data-floor="' + mapId + '"]');
 
-          if (changeFloorButton.length > 0) {
-            clearInterval(changeButtonLoadedInterval);
+        if (changeFloorButton.length > 0) {
+          // Change map action
+          $('#map-floor-tabs a[data-floor="' + mapId + '"]').tab('show');
 
-            // Change map action
-            $('#map-floor-tabs a[data-floor="' + mapId + '"]').tab("show");
+          // Waiting on reload map
+          var selectedMap = $('.tab-pane.show');
+          var selectedMapId = null;
+          let clearAndPin = false;
 
-            // Waiting on reload map
-            var changeMapInterval = setInterval(function () {
-              var selectedMap = $(".tab-pane.show");
-              var selectedMapId = null;
-
-              if (selectedMap.length > 0) {
-                var selectedMapIdName = selectedMap.attr("id");
-                selectedMapId = parseInt(
-                  selectedMapIdName.replace(/floor|-map/g, "")
-                );
-              }
-
-              // Wait for load new map
-              if (
-                (selectedMap.length > 0 && selectedMapId === mapId) ||
-                mapId === 0
-              ) {
-                clearInterval(changeMapInterval);
-                disableAllExcept([val]);
-
-                pinPopover(val);
-
-                if (
-                  $(this).closest(".input-group").find(".search-reset")
-                    .length == 0
-                ) {
-                  $(this)
-                    .closest(".input-group")
-                    .append('<span class="search-reset"></span>');
-                }
-
-                $(this)
-                  .closest(".input-group")
-                  .find(".search-reset")
-                  .removeClass("hidden");
-              }
-            }, 50);
+          if (selectedMap.length > 0) {
+            var selectedMapIdName = selectedMap.attr('id');
+            selectedMapId = parseInt(selectedMapIdName.replace(/floor|-map/g, ''));
+            clearAndPin = true;
           }
-        }, 50);
+
+          // Wait for load new map
+
+          if ((selectedMap.length > 0 && selectedMapId === mapId) || mapId === 0) {
+            clearAndPin = true;
+            if ($(this).closest('.input-group').find('.search-reset').length == 0) {
+              $(this).closest('.input-group').append('<span class="search-reset"></span>');
+            }
+
+            $(this).closest('.input-group').find('.search-reset').removeClass('hidden');
+          }
+
+          if (clearAndPin) {
+            clearInterval(mapLoadedInterval);
+            disableAllExcept([val]);
+
+            //Get if there is navigate in url and then remove
+            var currentUrl = new URL(window.location.href);
+
+            var params = new URLSearchParams(currentUrl.search);
+
+            if (params.has('navigate')) {
+              const belongsToData = getBelongsToAndOtherMapData(val);
+
+              kioskFindPathById(belongsToData.belongsTo, belongsToData.otherMapId);
+
+              $('#disable-selection').removeClass('display-hidden');
+
+              params.delete('navigate');
+
+              currentUrl.search = params.toString();
+
+              window.history.pushState({}, '', currentUrl.href);
+            } else {
+              pinPopover(val);
+            }
+          }
+        }
       }
     }, 50);
   }
 
-  $("#map-search-shop").on("change", function () {
+  $('#map-search-shop').on('change', function () {
     var val = $(this).val();
-    if (val == "0") {
-      $(this).closest(".input-group").find(".search-reset").addClass("hidden");
+    var kiosk = $('.tab-content').data('kiosk-id');
+    var isKiosk = $('.is-kiosk-map');
+    if (isKiosk.length) {
+      val = fixPositionByKiosk(val, kiosk);
+    }
+
+    if (val == '0') {
+      $(this).closest('.input-group').find('.search-reset').addClass('hidden');
       resetFilters();
     } else {
-      $("#map-search-shop").selectpicker("val", val);
-      val = "s" + val.toLowerCase();
+      $('#map-search-shop').selectpicker('val', val);
+      val = 's' + val.toLowerCase();
 
       $tabHeader = $(
-        '#map-floor-tabs a[data-floor="' + mapShops[val].floorid + '"]'
+        '#map-floor-tabs a[data-floor="' + (mapShops[val] && mapShops[val].floorid) + '"]',
       );
-      $tabHeader.tab("show");
+      $tabHeader.tab('show');
 
       setTimeout(function () {
         resetFilters(true);
-        $(hideInfoElementsSelectors.join(",")).removeClass("hide");
+        $(hideInfoElementsSelectors.join(',')).removeClass('hide');
         disableAllExcept([val]);
         pinPopover(val);
       }, 100);
 
-      if ($(this).closest(".input-group").find(".search-reset").length == 0) {
-        $(this)
-          .closest(".input-group")
-          .append('<span class="search-reset"></span>');
+      if ($(this).closest('.input-group').find('.search-reset').length == 0) {
+        $(this).closest('.input-group').append('<span class="search-reset"></span>');
       }
-      $(this)
-        .closest(".input-group")
-        .find(".search-reset")
-        .removeClass("hidden");
+      $(this).closest('.input-group').find('.search-reset').removeClass('hidden');
     }
   });
 
-  $("body").on("click", ".search-reset", function (e) {
+  $('body').on('click', '.search-reset', function (e) {
     e.preventDefault();
     e.stopPropagation();
     resetFilters();
   });
 
-  $('#map-floor-tabs a[data-toggle="tab"]').on(
-    "shown.bs.tab",
-    function (event) {
-      updatePopoverPosition();
+  $('#map-floor-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
+    updatePopoverPosition();
+    var clickedId = $(this).attr('id');
+    var pathAttribute;
+    if (clickedId === 'floor2-map-tab') {
+      pathAttribute = 'path_floor2';
+    } else if (clickedId === 'floor3-map-tab') {
+      pathAttribute = 'path_floor3';
+    } else {
+      pathAttribute = 'path_floor1'; // По умолчанию для этажа 1
     }
-  );
 
-  $('#map-floor-tabs a[data-toggle="tab"]').on("click", function (event) {
-    $(hideInfoElementsSelectors.join(",")).removeClass("hide");
+    $('#map-search-shop option').each(function () {
+      var optionPath = $(this).attr(pathAttribute);
+      if (optionPath) {
+        $(this).val(optionPath);
+      }
+    });
+  });
+
+  $('#map-floor-tabs a[data-toggle="tab"]').on('click', function (event) {
+    $(hideInfoElementsSelectors.join(',')).removeClass('hide');
     resetFilters();
   });
 
-  $("body").on("click", ".shop-popover", function (e) {
-    var isKiosk = $(".is-kiosk-map");
+  $('body').on('click', '.shop-popover', function (e) {
+    var isKiosk = $('.is-kiosk-map');
     if (!isKiosk.length) {
       e.preventDefault();
-      if ($(this).attr("data-belongs-to") != "null") {
-        var shopId = $(this)
-          .attr("data-belongs-to")
-          .toLowerCase()
-          .replace("#map-item-", "s");
-        if (mapShops[shopId].link != "#") {
+      if ($(this).attr('data-belongs-to') != 'null') {
+        var shopId = $(this).attr('data-belongs-to').toLowerCase().replace('#map-item-', 's');
+        if (mapShops[shopId].link != '#') {
           setTimeout(function () {
             document.location.href = mapShops[shopId].link;
           }, 250);
@@ -1146,23 +1145,12 @@ if ($(".shops-map").length) {
       }
     }
   });
-  $(document).on("click", function (e) {
-    var popover = $(".shop-popover");
-    if (!$(e.target).closest(popover).length && popover.is(":visible")) {
-      resetFilters();
-    }
-  });
-  if ($("#shops-map-page").length) {
+
+  if ($('#shops-map-page').length) {
     // pan and zome
     var eventsHandler;
     eventsHandler = {
-      haltEventListeners: [
-        "touchstart",
-        "touchend",
-        "touchmove",
-        "touchleave",
-        "touchcancel",
-      ],
+      haltEventListeners: ['touchstart', 'touchend', 'touchmove', 'touchleave', 'touchcancel'],
       init: function (options) {
         var instance = options.instance,
           initialScale = 1,
@@ -1171,20 +1159,18 @@ if ($(".shops-map").length) {
         // Init Hammer
         // Listen only for pointer and touch events
         this.hammer = Hammer(options.svgElement, {
-          inputClass: Hammer.SUPPORT_POINTER_EVENTS
-            ? Hammer.PointerEventInput
-            : Hammer.TouchInput,
+          inputClass: Hammer.SUPPORT_POINTER_EVENTS ? Hammer.PointerEventInput : Hammer.TouchInput,
         });
         // Enable pinch on web
-        if (isTouchDevice() && !$(".is-kiosk-map").length) {
-          this.hammer.get("pinch").set({ enable: true });
+        if (isTouchDevice() && !$('.is-kiosk-map').length) {
+          //this.hammer.get("pinch").set({ enable: true });
           // Handle double tap
-          this.hammer.on("doubletap", function (ev) {
+          this.hammer.on('doubletap', function (ev) {
             instance.zoomIn();
           });
-          this.hammer.on("panstart panmove", function (ev) {
+          this.hammer.on('panstart panmove', function (ev) {
             // On pan start reset panned variables
-            if (ev.type === "panstart") {
+            if (ev.type === 'panstart') {
               pannedX = 0;
               pannedY = 0;
             }
@@ -1198,30 +1184,30 @@ if ($(".shops-map").length) {
           });
 
           // Handle pinch
-          this.hammer.on("pinchstart pinchmove", function (ev) {
-            // On pinch start remember initial zoom
-            if (ev.type === "pinchstart") {
-              initialScale = instance.getZoom();
-              instance.zoomAtPoint(initialScale * ev.scale, {
-                x: ev.center.x,
-                y: ev.center.y,
-              });
-            }
-            const el = ev.target;
-            const rect = el.getBoundingClientRect();
+          // this.hammer.on("pinchstart pinchmove", function (ev) {
+          //     // On pinch start remember initial zoom
+          //     if (ev.type === "pinchstart") {
+          //         initialScale = instance.getZoom();
+          //         instance.zoomAtPoint(initialScale * ev.scale, {
+          //             x: ev.center.x,
+          //             y: ev.center.y,
+          //         });
+          //     }
+          //     const el = ev.target;
+          //     const rect = el.getBoundingClientRect();
 
-            const pos = {
-              x: ev.center.x - rect.left,
-              y: ev.center.y - rect.top,
-            };
+          //     const pos = {
+          //         x: ev.center.x - rect.left,
+          //         y: ev.center.y - rect.top,
+          //     };
 
-            instance.zoomAtPoint(initialScale * ev.scale, {
-              x: pos.x,
-              y: pos.y,
-            });
-          });
+          //     instance.zoomAtPoint(initialScale * ev.scale, {
+          //         x: pos.x,
+          //         y: pos.y,
+          //     });
+          // });
           // Prevent moving the page on some devices when panning over SVG
-          options.svgElement.addEventListener("touchmove", function (e) {
+          options.svgElement.addEventListener('touchmove', function (e) {
             e.preventDefault();
           });
         }
@@ -1239,16 +1225,10 @@ if ($(".shops-map").length) {
         gutterWidth = 200,
         gutterHeight = 200,
         sizes = this.getSizes(),
-        leftLimit =
-          -((sizes.viewBox.x + sizes.viewBox.width) * sizes.realZoom) +
-          gutterWidth,
-        rightLimit =
-          sizes.width - gutterWidth - sizes.viewBox.x * sizes.realZoom,
-        topLimit =
-          -((sizes.viewBox.y + sizes.viewBox.height) * sizes.realZoom) +
-          gutterHeight,
-        bottomLimit =
-          sizes.height - gutterHeight - sizes.viewBox.y * sizes.realZoom;
+        leftLimit = -((sizes.viewBox.x + sizes.viewBox.width) * sizes.realZoom) + gutterWidth,
+        rightLimit = sizes.width - gutterWidth - sizes.viewBox.x * sizes.realZoom,
+        topLimit = -((sizes.viewBox.y + sizes.viewBox.height) * sizes.realZoom) + gutterHeight,
+        bottomLimit = sizes.height - gutterHeight - sizes.viewBox.y * sizes.realZoom;
 
       customPan = {};
       customPan.x = Math.max(leftLimit, Math.min(rightLimit, newPan.x));
@@ -1258,23 +1238,30 @@ if ($(".shops-map").length) {
     };
 
     var panZoom;
+    var svgPanZoomLoaded = false;
+    var isKiosk = $('.is-kiosk-map');
+    var zoomEnabled = isKiosk.length !== 0;
 
-    function setMap(map) {
-      $(".spinner-wrapper").removeClass("done");
-      if (currentMap !== map) {
-        if (panZoom) {
-          panZoom.destroy();
-        }
+    // Add svgPanZoomLoaded event listener once
+    document.addEventListener('svgPanZoomLoaded', function () {
+      svgPanZoomLoaded = true;
+      initializeMap(currentMap);
+    });
 
-        var isKiosk = $(".is-kiosk-map");
-
-        panZoom = svgPanZoom("#" + map + " svg", {
+    // Function to initialize svgPanZoom
+    function initializeMap(map) {
+      if (typeof svgPanZoom !== 'undefined') {
+        panZoom = svgPanZoom('#' + map + ' svg', {
           animationTime: 1000,
-          zoomEnabled: !isKiosk.length,
+          zoomEnabled: zoomEnabled,
           controlIconsEnabled: !isKiosk.length,
           panEnabled: !isKiosk.length,
           dblClickZoomEnabled: !isKiosk.length,
-          fit: 1,
+          fit:
+            document.querySelector('#floor-map svg').clientHeight > 0 &&
+            document.querySelector('#floor-map svg').clientWidth > 0
+              ? 1
+              : 0,
           center: 1,
           customEventsHandler: eventsHandler,
           beforePan: beforePan,
@@ -1289,48 +1276,76 @@ if ($(".shops-map").length) {
             updatePopoverPositionInfoIcon();
           },
         });
+      }
+    }
 
-        resetPanZoom();
+    // Function to set the map
+    function setMap(map) {
+      $('.spinner-wrapper').removeClass('done');
+      if (currentMap !== map) {
+        if (panZoom) {
+          panZoom.destroy();
+        }
 
         currentMap = map;
+
+        if (svgPanZoomLoaded) {
+          initializeMap(map);
+        }
+
+        resetPanZoom();
       }
 
-      if ($(window).width() > 1024 || $("#is-kiosk-map").length) {
+      var isKiosk = $('.is-kiosk-map');
+
+      if (isKiosk && isKiosk.length === 0) {
+        $(window).resize(function () {
+          updateHeightBasedOnWidth();
+          resetPanZoom();
+        });
+      }
+
+      if ($(window).width() > 1024 || $('#is-kiosk-map').length) {
         disablePanZoom(panZoom);
       } else {
-        if (!$("#is-kiosk-map")) {
+        if (!$('#is-kiosk-map')) {
           enablePanZoom(panZoom);
         }
       }
 
-      $(".shops-map svg style").prop("disabled", true);
-      $("#" + map + " svg style").prop("disabled", false);
+      $('.shops-map svg style').prop('disabled', true);
+      $('#' + map + ' svg style').prop('disabled', false);
 
-      $(".temporary-hidden").removeClass("temporary-hidden");
-      $(".spinner-wrapper").addClass("done");
+      $('.temporary-hidden').removeClass('temporary-hidden');
+      $('.spinner-wrapper').addClass('done');
     }
 
-    setMap("floor1-map");
+    // Initialize first map if not in kiosk mode
+    if ($('.is-kiosk-map').length === 0) {
+      setMap('floor1-map');
+    }
 
-    $("#map-floor-tabs #garage-map-tab").on("shown.bs.tab", function (event) {
-      setMap("garage-map");
+    // Event listeners for floor change
+    $('#map-floor-tabs #garage-map-tab').on('shown.bs.tab', function (event) {});
+
+    $('#map-floor-tabs #floor1-map-tab').on('shown.bs.tab', function (event) {
+      setMap('floor1-map');
     });
 
-    $("#map-floor-tabs #floor1-map-tab").on("shown.bs.tab", function (event) {
-      setMap("floor1-map");
+    $('#map-floor-tabs #floor2-map-tab').on('shown.bs.tab', function (event) {
+      setMap('floor2-map');
+    });
+    $('#map-floor-tabs #floor3-map-tab').on('shown.bs.tab', function (event) {
+      setMap('floor3-map');
     });
 
-    $("#map-floor-tabs #floor2-map-tab").on("shown.bs.tab", function (event) {
-      setMap("floor2-map");
-    });
-    $("#map-floor-tabs #floor3-map-tab").on("shown.bs.tab", function (event) {
-      setMap("floor3-map");
-    });
-
+    // Function to reset panZoom
     function resetPanZoom() {
-      panZoom.resize();
-      panZoom.fit();
-      panZoom.center();
+      if (panZoom !== undefined) {
+        panZoom.resize();
+        panZoom.fit();
+        panZoom.center();
+      }
     }
 
     function enablePanZoom(el) {
@@ -1349,7 +1364,7 @@ if ($(".shops-map").length) {
     }
 
     function disablePanZoom(el) {
-      var isKiosk = $(".is-kiosk-map");
+      var isKiosk = $('.is-kiosk-map');
       if (el) {
         el.disableZoom();
         el.disableControlIcons();
@@ -1366,7 +1381,7 @@ if ($(".shops-map").length) {
       }
     }
 
-    if (!$("#is-kiosk-map")) {
+    if (!$('#is-kiosk-map')) {
       var pageWidth = 0;
       $(window).resize(function () {
         if ($(window).width() > 1024 && pageWidth <= 1024) {
@@ -1382,8 +1397,8 @@ if ($(".shops-map").length) {
     }
   }
 
-  $("#disable-selection").on("click", function () {
+  $('#disable-selection').on('click', function () {
     resetFilters();
-    $(hideInfoElementsSelectors.join(",")).removeClass("hide");
+    $(hideInfoElementsSelectors.join(',')).removeClass('hide');
   });
 }

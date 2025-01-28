@@ -11921,7 +11921,7 @@ a:hover {
     transform: translateY(-50%);
     border-radius: 50%;
     cursor: pointer;
-    background-image: url("../imgs/svg/icons/reset-search.svg");
+    background-image: url("../images/ico/reset-search.svg");
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
